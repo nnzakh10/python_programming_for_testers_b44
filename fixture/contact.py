@@ -11,6 +11,37 @@ class ContactHelper:
         wd = self.app.wd
 
         self.open_add_new_page()
+        self.fill_form(contact)
+        wd.find_element(By.NAME, "submit").click()
+        self.return_to_home_page()
+
+    def edit_first(self, contact):
+        wd = self.app.wd
+
+        self.open_edit_page()
+        self.fill_form(contact)
+        wd.find_element(By.NAME, "update").click()
+
+    def delete_first(self):
+        wd = self.app.wd
+        wd.find_element(By.NAME, "selected[]").click()
+        wd.find_element(By.XPATH, "//input[@value='Delete']").click()
+        self.app.accept_alert()
+
+    def return_to_home_page(self):
+        wd = self.app.wd
+        wd.find_element(By.LINK_TEXT, "home page").click()
+
+    def open_add_new_page(self):
+        wd = self.app.wd
+        wd.find_element(By.LINK_TEXT, "add new").click()
+
+    def open_edit_page(self):
+        wd = self.app.wd
+        wd.find_element(By.XPATH, "//img[@alt='Edit']").click()
+
+    def fill_form(self, contact):
+        wd = self.app.wd
 
         wd.find_element(By.NAME, "firstname").click()
         wd.find_element(By.NAME, "firstname").clear()
@@ -74,8 +105,3 @@ class ContactHelper:
         wd.find_element(By.NAME, "ayear").click()
         wd.find_element(By.NAME, "ayear").clear()
         wd.find_element(By.NAME, "ayear").send_keys(contact.ayear)
-        wd.find_element(By.NAME, "submit").click()
-
-    def open_add_new_page(self):
-        wd = self.app.wd
-        wd.find_element(By.LINK_TEXT, "add new").click()

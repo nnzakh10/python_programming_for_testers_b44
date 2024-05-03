@@ -17,5 +17,14 @@ class Application:
         wd = self.wd
         wd.get("http://localhost/addressbook/")
 
+    def accept_alert(self):
+        wd = self.wd
+
+        try:
+            wd.switch_to.alert.accept()
+            return True
+        except:
+            return False
+
     def destroy(self):
         self.wd.quit()
