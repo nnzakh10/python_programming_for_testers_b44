@@ -9,6 +9,9 @@ class ContactHelper:
 
     def create(self, contact):
         wd = self.app.wd
+
+        self.open_add_new_page()
+
         wd.find_element(By.NAME, "firstname").click()
         wd.find_element(By.NAME, "firstname").clear()
         wd.find_element(By.NAME, "firstname").send_keys(contact.firstname)
