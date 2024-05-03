@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from contact import Contact
-from application import Application
+from model.contact import Contact
+from fixture.application import Application
 
 
 @pytest.fixture
@@ -14,11 +14,11 @@ def app(request):
 
 def test_create_new_contact(app):
     app.open_home_page()
-    app.login("admin", "secret")
+    app.session.login("admin", "secret")
 
     app.open_add_new_page()
 
-    app.create_new_contact(Contact(
+    app.contact.create(Contact(
         "Иван",
         "Иванович",
         "Иванов",
@@ -41,4 +41,4 @@ def test_create_new_contact(app):
         "January",
         "2020"))
 
-    app.logout()
+    app.session.logout()
