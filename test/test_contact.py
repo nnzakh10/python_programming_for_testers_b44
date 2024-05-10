@@ -3,15 +3,10 @@ from model.contact import Contact
 
 
 def test_create_new_contact(app):
-    app.open_home_page()
-    app.session.login("admin", "secret")
     app.contact.create(baseContact)
-    app.session.logout()
 
 
 def test_create_empty_contact(app):
-    app.open_home_page()
-    app.session.login("admin", "secret")
     app.contact.create(Contact(
         "",
         "",
@@ -34,12 +29,9 @@ def test_create_empty_contact(app):
         "-",
         "-",
         ""))
-    app.session.logout()
 
 
 def test_edit_first_contact(app):
-    app.open_home_page()
-    app.session.login("admin", "secret")
     app.contact.create(baseContact)
     app.contact.edit_first(Contact(
         "Петр",
@@ -63,15 +55,11 @@ def test_edit_first_contact(app):
         "2",
         "February",
         "2021"))
-    app.session.logout()
 
 
 def test_delete_first_contact(app):
-    app.open_home_page()
-    app.session.login("admin", "secret")
     app.contact.create(baseContact)
     app.contact.delete_first()
-    app.session.logout()
 
 
 baseContact = Contact(
