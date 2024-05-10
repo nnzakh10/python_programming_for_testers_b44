@@ -32,7 +32,8 @@ def test_create_empty_contact(app):
 
 
 def test_edit_first_contact(app):
-    app.contact.create(baseContact)
+    if app.contact.count() == 0:
+        app.contact.create(baseContact)
     app.contact.edit_first(Contact(
         "Петр",
         "Петрович",
@@ -58,7 +59,8 @@ def test_edit_first_contact(app):
 
 
 def test_delete_first_contact(app):
-    app.contact.create(baseContact)
+    if app.contact.count() == 0:
+        app.contact.create(baseContact)
     app.contact.delete_first()
 
 

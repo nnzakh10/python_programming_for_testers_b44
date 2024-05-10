@@ -11,12 +11,14 @@ def test_add_empty_group(app):
 
 
 def test_edit_first_group(app):
-    app.group.create(baseGroup)
+    if app.group.count() == 0:
+        app.group.create(baseGroup)
     app.group.edit_first(Group("edit_name", "edit_header", "edit_footer"))
 
 
 def test_delete_first_group(app):
-    app.group.create(baseGroup)
+    if app.group.count() == 0:
+        app.group.create(baseGroup)
     app.group.delete_first()
 
 
